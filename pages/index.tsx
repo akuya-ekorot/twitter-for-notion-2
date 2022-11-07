@@ -9,13 +9,13 @@ const Home = () => {
         title={`Welcome to Twitter for Notion`}
         buttonText={`Get Started`}
         id={`get-started`}
-        linkToSection={`twitter`}
+        link={`#twitter`}
       />
       <Section
         title={`Connect your Twitter account`}
         buttonText={`Log in to Twitter`}
         id={`twitter`}
-        linkToSection={`notion`}
+        link={`/api/twitter/auth`}
       />
       <Section
         title={`Let's set up your Notion`}

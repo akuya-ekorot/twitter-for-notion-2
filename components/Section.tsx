@@ -2,10 +2,10 @@ interface SectionProps {
   title: string;
   buttonText: string;
   id: string;
-  linkToSection?: string;
+  link?: string;
 }
 
-const Section = ({ title, buttonText, id, linkToSection }: SectionProps) => {
+const Section = ({ title, buttonText, id, link }: SectionProps) => {
   return (
     <div
       id={id}
@@ -13,7 +13,7 @@ const Section = ({ title, buttonText, id, linkToSection }: SectionProps) => {
     >
       <h1>{title}</h1>
       <a
-        href={linkToSection && `#${linkToSection}`}
+        href={link && `${link}`}
         className="px-5 py-4 text-base text-white bg-black rounded"
       >
         {buttonText}
