@@ -8,7 +8,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { state, code } = req.query;
+  let { state, code } = req.query;
+  code = String(code);
   const { sessionState, codeVerifier } = req.cookies;
 
   if (!codeVerifier || !state || !sessionState || !code) {
