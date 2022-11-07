@@ -43,5 +43,5 @@ export default async function handler(
         console.log(user);
       }
     );
-  res.status(200).json({ name: "Thanks for calling back" });
+  res.status(200).redirect("/#notion");
 }
