@@ -8,17 +8,21 @@ type Data = {
   name: string;
 };
 
+const clientId: string = process.env.TWITTER_OAUTH2_CLIENT_ID;
+const clientSecret: string = process.env.TWITTER_OAUTH2_CLIENT_SECRET;
+const callbackUrl: string = process.env.CALLBACK_URL;
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   const twitterClient = new TwitterApi({
-    clientId: process.env.TWITTER_OAUTH2_CLIENT_ID,
-    clientSecret: process.env.TWITTER_OAUTH2_CLIENT_SECRET,
+    clientId,
+    clientSecret,
   });
 
   const { url, codeVerifier, state } = twitterClient.generateOAuth2AuthLink(
-    process.env.CALLBACK_URL,
+    callbackUrl,
     { scope: ["tweet.read", "tweet.write", "users.read", "offline.access"] }
   );
 
