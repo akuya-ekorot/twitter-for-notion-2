@@ -1,6 +1,9 @@
-import { Client } from "@notionhq/client";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   res
     .status(200)
     .redirect(
