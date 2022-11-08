@@ -43,5 +43,5 @@ export default async function handler(
     { merge: true }
   );
 
-  res.status(200).json(notionData.data);
+  res.status(200).redirect(`/dashboard?id=${docRef.id}`);
 }
