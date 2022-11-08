@@ -17,8 +17,6 @@ const getServerSideProps = async (context: any) => {
   const userSnap = await getDoc(userRef);
   const user = userSnap.data();
 
-  console.log(user);
-
   return {
     props: {
       username,
