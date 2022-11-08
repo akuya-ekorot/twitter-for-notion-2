@@ -19,7 +19,7 @@ const Home = () => {
         title={`Let's set up your Notion`}
         buttonText={`Connect to Notion`}
         id={`notion`}
-        link={`/api/notion/auth`}
+        link={process.env.NOTION_AUTH_URL}
       />
     </>
   );

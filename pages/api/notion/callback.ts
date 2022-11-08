@@ -1,8 +1,33 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import axios from "axios";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  res.status(200).send("You called back!");
+  const getNotionData = async () => {
+    const notionData = await axios.post(
+      "https://api.notion.com/v1/oauth/token",
+      {
+        code: req.query.code,
+        grant_type: "authorization_code",
+      },
+      {
+        auth: {
+          username: String(process.env.NOTION_OAUTH_CLIENT_ID),
+          password: String(process.env.NOTION_OAUTH_CLIENT_SECRET),
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(notionData);
+    return notionData;
+  };
+
+  const notionData = await getNotionData();
+
+  res.status(200).json(notionData.data);
 }
