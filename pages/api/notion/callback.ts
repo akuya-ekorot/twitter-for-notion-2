@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase/initFirestore";
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,6 +30,18 @@ export default async function handler(
   };
 
   const notionData = await getNotionData();
+
+  const docRef = doc(db, "users", String(req.query.state));
+
+  setDoc(
+    docRef,
+    {
+      notion: {
+        ...notionData.data,
+      },
+    },
+    { merge: true }
+  );
 
   res.status(200).json(notionData.data);
 }

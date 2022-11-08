@@ -1,6 +1,4 @@
 import TwitterApi from "twitter-api-v2";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase/initFirestore";
 import type { NextApiRequest, NextApiResponse } from "next";
 import cookie from "cookie";
 
@@ -27,12 +25,6 @@ export default async function handler(
   );
 
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      url,
-      codeVerifier,
-      state,
-    });
-
     const codeVerifierCookie = cookie.serialize("codeVerifier", codeVerifier, {
       httpOnly: true,
       maxAge: 60 * 60,
@@ -45,7 +37,6 @@ export default async function handler(
       secure: false,
     });
 
-    console.log(codeVerifier);
     res.setHeader("Set-Cookie", [codeVerifierCookie, stateCookie]);
     res.status(200).redirect(url);
   } catch (e) {
