@@ -43,5 +43,5 @@ export default async function handler(
     { merge: true }
   );
 
-  res.status(200).redirect(`/dashboard?id=${docRef.id}`);
+  res.status(200).redirect(`/api/server?id=${docRef.id}`);
 }

@@ -1,13 +1,26 @@
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "./api/firebase/initFirestore";
+import { useState } from "react";
 
 const Dashboard = (props: any) => {
+  const [toggle, setToggle] = useState(() => false);
+
+  const handleToggle = () => {
+    setToggle((prev) => !prev);
+  };
   return (
-    <>
-      <img src={props.workspaceIcon} height="30px" width="30px" />
-      <h1>Welcome to the Dashboard {props.name}</h1>
-      <h2>Notion Workspace: {props.workspace}</h2>
-    </>
+    <div className="p-10 w-screen h-screen flex flex-col items-center gap-10">
+      <h1 className="text-3xl font-bold">
+        Welcome to the Dashboard {props.name}
+      </h1>
+      <p>Use this button to toggle Twitter for Notion on or off</p>
+      <button
+        className="rounded-lg p-5 bg-black text-white"
+        onClick={handleToggle}
+      >
+        Turn {toggle ? "off" : "on"}
+      </button>
+    </div>
   );
 };
 
