@@ -55,5 +55,5 @@ export default async function handler(
     { merge: true }
   );
 
-  res.status(200).redirect(`/notion?id=${user.username}`);
+  res.status(200).redirect(`/?id=${user.username}`);
 }

@@ -6,7 +6,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        notion: "url('../public/notion.svg')",
+        twitter: "url('../public/twitter.svg')",
+      },
+    },
   },
   plugins: [],
 };
